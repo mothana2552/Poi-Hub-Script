@@ -108,7 +108,134 @@ SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", fu
 end)
 
 SectionMain:NewButton("ล่องหน", "ฟังก์ชันล่องหน", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()local Library = loadstring(game:HttpGet("https://pastebin.com/raw/Q69rcHsK"))()
+
+-- กำหนดธีมสีดำและปุ่มสีส้ม
+local customColors = {
+    SchemeColor = Color3.fromRGB(255, 140, 0), -- สีปุ่มสีส้ม
+    Background = Color3.fromRGB(30, 30, 30), -- พื้นหลังสีดำ
+    Header = Color3.fromRGB(20, 20, 20),
+    TextColor = Color3.fromRGB(255, 255, 255),
+    ElementColor = Color3.fromRGB(40, 40, 40)
+}
+
+local Window = Library.CreateLib("Poi Hub👽", customColors)
+
+-- 🏠 หน้า Home
+local TabHome = Window:NewTab("Home🏠")
+local SectionHome = TabHome:NewSection("Home")
+
+-- ดึงข้อมูลผู้เล่น
+local player = game.Players.LocalPlayer
+local username = player.Name
+local displayName = player.DisplayName
+local userId = player.UserId
+local accountAge = player.AccountAge -- อายุเป็นจำนวนวัน
+local accountCreationDate = os.date("%d/%m/%Y", os.time() - (accountAge * 86400)) -- แปลงเป็น วัน/เดือน/ปี
+local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+-- ดึง Executor (ถ้ามี)
+local executor = "Unknown"
+if identifyexecutor then
+    executor = identifyexecutor() -- ฟังก์ชันระบุตัวรัน
+end
+
+-- แสดงข้อมูลเป็นปุ่มที่กดไม่ได้
+SectionHome:NewButton("Username: " .. username, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Display Name: " .. displayName, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Player ID: " .. userId, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Account Age: " .. accountCreationDate, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Executor: " .. executor, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Game: " .. gameName, "ข้อมูลของคุณ", function() end)
+
+-- สร้างแท็บ Main
+local TabMain = Window:NewTab("Main👑")
+local SectionMain = TabMain:NewSection("Main")
+
+-- ฟังก์ชันทั้งหมดใน Main
+SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", "ฟังก์ชันบินเร็ว", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/UjJzPtYJ"))()
+end)
+
+SectionMain:NewButton("วาปตีหลัง", "ฟังก์ชันวาปตีหลัง", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/R3YwinDZ"))()
+end)
+
+SectionMain:NewButton("เเมพสว่าง", "ฟังก์ชันแผนที่สว่าง", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/YCUxAsHD"))()
+end)
+
+SectionMain:NewButton("ยกรถ", "ฟังก์ชันยกรถ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/s5vNaWSp"))()
+end)
+
+SectionMain:NewButton("ฆ่าบอททุกตัว", "ฟังก์ชันฆ่าบอท", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/DczvQZyU"))()
+end)
+
+SectionMain:NewButton("ล็อคหัว", "ฟังก์ชันล็อคหัว", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/XCTLaVGj'))()
+end)
+
+SectionMain:NewButton("เพิ่ม FPS", "ฟังก์ชันเพิ่ม FPS", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/FrMaC7KA"))()
+end)
+
+SectionMain:NewButton("วิ่งเร็ว", "ฟังก์ชันวิ่งเร็ว", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/pZhkm5mD"))()
+end)
+
+SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/19QuEExT"))()
+end)
+
+SectionMain:NewSlider("กระโดดสูง", "เลื่อนเพื่อปรับค่า JumpPower", 500, 50, function(s)
+    -- ฟังก์ชันปรับ JumpPower ตามค่าใน Slider
+    local power = s
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild("Humanoid") then
+        character.Humanoid.UseJumpPower = true
+        character.Humanoid.JumpPower = power
+        print("✅ ปรับ JumpPower เป็น: " .. power)
+    else
+        warn("❌ รันไม่ติด.")
+    end
+end)
+
+SectionMain:NewButton("เดินทะลุ", "ฟังก์ชันเดินทะลุ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/x59UfDpq"))()
+end)
+
+SectionMain:NewButton("เตะคนออกเเมพ", "ฟังก์ชันเตะคนออกแผนที่", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/qMCbGpg5"))()
+end)
+
+SectionMain:NewButton("เสกของ", "ฟังก์ชันเสกของ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/Y19HKccz"))()
+end)
+
+SectionMain:NewButton("Tools", "ฟังก์ชันเครื่องมือ", function()
+    loadstring(game:HttpGet("https://pastefy.app/VYIAk3o1/raw"))()
+end)
+
+SectionMain:NewButton("hitbox", "ฟังก์ชัน hitbox", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Update-script-hitbox-9326"))()
+end)
+
+SectionMain:NewButton("เดินบนกำเเพง", "ฟังก์ชันเดินบนกำแพง", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+end)
+
+SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
+end)
+
+SectionMain:NewButton("ล่องหน", "ฟังก์ชันล่องหน", function()
     loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()
+end)
+
+SectionMain:NewButton("กระชากคอ", "ฟังก์ชันกระชากคอ", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/zWgKSfGf'))()
 end)
 
 SectionMain:NewButton("สร้างบล็อค", "ฟังก์ชันสร้างบล็อค", function()
@@ -135,7 +262,7 @@ SectionMain:NewButton("Respawn", "Respawn", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yHxeDQA3"))() 
 end)
 
-SectionMain:NewButton("บินรถ", "ฟังก์ชันรถบิน", function()
+SectionMain:NewButton("รถบิน", "ฟังก์ชันรถบิน", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui"))("Spider Script") 
 end)
 
