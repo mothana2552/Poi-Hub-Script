@@ -19,9 +19,36 @@ local customColors = {
 
 local Window = Library.CreateLib("Poi Hub", customColors)
 
+-- 🏠 หน้า Home
+local TabHome = Window:NewTab("Home🏠")
+local SectionHome = TabHome:NewSection("📌 User Info")
+
+-- ดึงข้อมูลผู้เล่น
+local player = game.Players.LocalPlayer
+local username = player.Name
+local displayName = player.DisplayName
+local userId = player.UserId
+local accountAge = player.AccountAge -- อายุเป็นจำนวนวัน
+local accountCreationDate = os.date("%d/%m/%Y", os.time() - (accountAge * 86400)) -- แปลงเป็น วัน/เดือน/ปี
+local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+-- ดึง Executor (ถ้ามี)
+local executor = "Unknown"
+if identifyexecutor then
+    executor = identifyexecutor() -- ฟังก์ชันระบุตัวรัน
+end
+
+-- แสดงข้อมูลเป็นปุ่มที่กดไม่ได้
+SectionHome:NewButton("Username: " .. username, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Display Name: " .. displayName, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Player ID: " .. userId, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Account Age: " .. accountCreationDate, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Executor: " .. executor, "ข้อมูลของคุณ", function() end)
+SectionHome:NewButton("Game: " .. gameName, "ข้อมูลของคุณ", function() end)
+
 -- สร้างแท็บ Main
-local TabMain = Window:NewTab("Main")
-local SectionMain = TabMain:NewSection("Main Functions")
+local TabMain = Window:NewTab("Main👑")
+local SectionMain = TabMain:NewSection("Main")
 
 -- ฟังก์ชันทั้งหมดใน Main
 SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", "ฟังก์ชันบินเร็ว", function()
@@ -84,8 +111,8 @@ SectionMain:NewButton("เดินบนกำเเพง", "ฟังก์�
     loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
 end)
 
-SectionMain:NewButton("มองทะลุ EPS", "ฟังก์ชันมองทะลุ", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/xz6ngn1g", true))()
+SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
 end)
 
 SectionMain:NewButton("ล่องหน", "ฟังก์ชันล่องหน", function()
@@ -125,8 +152,8 @@ SectionMain:NewButton("รถบิน", "ฟังก์ชันรถบิ�
 end)
 
 -- สร้างแท็บ Game
-local TabGame = Window:NewTab("Game")
-local SectionGame = TabGame:NewSection("Game Functions")
+local TabGame = Window:NewTab("Game🎮")
+local SectionGame = TabGame:NewSection("Game")
 
 SectionGame:NewButton("Build A Boat", "สร้างเรือของคุณ", function() 
     loadstring(game:HttpGet("https://pastebin.com/raw/Yyd8jC7k"))() 
