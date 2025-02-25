@@ -21,7 +21,7 @@ local Window = Library.CreateLib("Poi Hub", customColors)
 
 -- 🏠 หน้า Home
 local TabHome = Window:NewTab("Home🏠")
-local SectionHome = TabHome:NewSection("📌 User Info")
+local SectionHome = TabHome:NewSection("Home")
 
 -- ดึงข้อมูลผู้เล่น
 local player = game.Players.LocalPlayer
