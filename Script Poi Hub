@@ -140,8 +140,12 @@ SectionMain:NewButton("ตัวสูง", "ฟังก์ชันตัว�
     loadstring(game:HttpGet("https://pastebin.com/raw/Eq9wdVcx"))()
 end)
 
-SectionMain:NewButton("เล่นว่าว", "ฟังก์ชันเล่นว่าว", function()
-    loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script") 
+SectionMain:NewButton("เล่นว่าว r6", "ฟังก์ชันเล่นว่าว", function()
+    loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+end)
+
+SectionMain:NewButton("เล่นว่าว r15", "ฟังก์ชันเล่นว่าว", function()
+    loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
 end)
 
 SectionMain:NewButton("Respawn", "Respawn", function()
