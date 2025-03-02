@@ -251,6 +251,137 @@ Players.PlayerRemoving:Connect(function()
     dropdown:Refresh(playerList)
 end)
 
+local Tab = Window:NewTab("Teleport🌀")
+local Section = Tab:NewSection("Teleport")
+
+local selectedPlayer = nil
+local teleporting = false
+local smoothing = false
+local noclip = false
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+
+-- ฟังก์ชันเปิด/ปิด NoClip
+local function setNoClip(state)
+    noclip = state
+    if noclip then
+        game:GetService("RunService").Stepped:Connect(function()
+            if noclip and char then
+                for _, part in pairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = false
+                    end
+                end
+            end
+        end)
+    end
+end
+
+-- อัปเดตรายชื่อผู้เล่น (ไม่รวมตัวเอง)
+local dropdown
+local function updatePlayerList()
+    local playerNames = {}
+    for _, plr in pairs(game.Players:GetPlayers()) do
+        if plr ~= player then -- ไม่ให้เห็นชื่อตัวเอง
+            table.insert(playerNames, plr.Name)
+        end
+    end
+    
+    if dropdown then
+        dropdown:Refresh(playerNames)
+    else
+        dropdown = Section:NewDropdown("Select Player", "Choose a player to teleport", playerNames, function(currentOption)
+            selectedPlayer = currentOption
+            print("Selected Player: " .. selectedPlayer)
+        end)
+    end
+end
+
+updatePlayerList()
+
+-- ฟังก์ชันบินตามเป้าหมายแบบทันที (วาปก่อนแล้วบิน)
+local function startFollowing(target)
+    if not target or not target.Character then return end
+
+    humanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+
+    local bodyPos = Instance.new("BodyPosition", humanoidRootPart)
+    bodyPos.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+    bodyPos.P = 10e4
+    bodyPos.D = 100
+
+    teleporting = true
+    while teleporting and task.wait() do
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            bodyPos.Position = target.Character.HumanoidRootPart.Position
+        else
+            teleporting = false
+        end
+    end
+
+    bodyPos:Destroy()
+end
+
+-- ฟังก์ชันบินทะลุตามเป้าหมายแบบ Smooth
+local function smoothFollow(target)
+    if not target or not target.Character then return end
+
+    -- เปิด NoClip
+    setNoClip(true)
+
+    local bodyVel = Instance.new("BodyVelocity", humanoidRootPart)
+    bodyVel.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+
+    smoothing = true
+    while smoothing and task.wait() do
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            local direction = (target.Character.HumanoidRootPart.Position - humanoidRootPart.Position).unit
+            bodyVel.Velocity = direction * 50
+        else
+            smoothing = false
+        end
+    end
+
+    bodyVel:Destroy()
+    setNoClip(false) -- ปิด NoClip เมื่อหยุดบิน
+end
+
+-- ปุ่มเริ่ม/หยุดบินตามแบบวาปก่อน
+local teleportButton
+teleportButton = Section:NewButton("Start Teleport OP", "Teleport and follow selected player", function()
+    if selectedPlayer then
+        teleporting = not teleporting
+        local targetPlayer = game.Players:FindFirstChild(selectedPlayer)
+        if teleporting and targetPlayer then
+            teleportButton:UpdateButton("Stop Teleport OP")
+            startFollowing(targetPlayer)
+        else
+            teleportButton:UpdateButton("Start Teleport OP")
+        end
+    end
+end)
+
+-- ปุ่มเริ่ม/หยุดบินทะลุ (Smooth Teleport)
+local smoothButton
+smoothButton = Section:NewButton("Smooth Teleport", "Fly smoothly through walls to target", function()
+    if selectedPlayer then
+        smoothing = not smoothing
+        local targetPlayer = game.Players:FindFirstChild(selectedPlayer)
+        if smoothing and targetPlayer then
+            smoothButton:UpdateButton("Stop Smooth Teleport")
+            smoothFollow(targetPlayer)
+        else
+            smoothButton:UpdateButton("Smooth Teleport")
+        end
+    end
+end)
+
+-- ปุ่มรีเซ็ตรายชื่อผู้เล่น
+Section:NewButton("Refresh Players", "Update player list", function()
+    updatePlayerList()
+end)
+
 -- ปุ่มปิด/เปิด UI พร้อมรูปภาพ และสามารถลากได้
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.CoreGui -- แก้ไขให้ UI คงอยู่ตลอดเวลา
