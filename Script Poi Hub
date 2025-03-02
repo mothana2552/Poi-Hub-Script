@@ -263,6 +263,13 @@ local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
 
+-- อัปเดตตัวละครเมื่อเกิดใหม่
+player.CharacterAdded:Connect(function(newChar)
+    char = newChar
+    humanoidRootPart = newChar:WaitForChild("HumanoidRootPart")
+    print("Character Reset - Variables Updated!")
+end)
+
 -- ฟังก์ชันเปิด/ปิด NoClip
 local function setNoClip(state)
     noclip = state
@@ -304,7 +311,6 @@ updatePlayerList()
 -- ฟังก์ชันบินตามเป้าหมายแบบทันที (วาปก่อนแล้วบิน)
 local function startFollowing(target)
     if not target or not target.Character then return end
-
     humanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
 
     local bodyPos = Instance.new("BodyPosition", humanoidRootPart)
