@@ -1,4 +1,3 @@
-
 --[[ 
 ██████╗  ██████╗ ██╗    ██╗  ██╗██╗   ██╗██████╗ 
 ██╔══██╗██╔═══██╗██║    ██║  ██║██║   ██║██╔══██╗
@@ -191,6 +190,7 @@ local LocalPlayer = Players.LocalPlayer
 -- ตัวแปรเก็บสถานะ
 local selectedPlayer = nil
 local isSpectating = false
+local playerMap = {}
 
 -- ฟังก์ชัน Spectate
 local function ToggleSpectate()
@@ -204,29 +204,32 @@ local function ToggleSpectate()
         if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("Humanoid") then
             Camera.CameraSubject = selectedPlayer.Character.Humanoid
             isSpectating = true
-            print("🔍 กำลังดูมุมมองของ: " .. selectedPlayer.Name)
+            print("🔍 กำลังดูมุมมองของ: " .. selectedPlayer.DisplayName)
         else
             warn("❌ เลือกผู้เล่นที่สามารถ Spectate ได้ก่อน")
         end
     end
 end
 
--- ฟังก์ชันโหลดรายชื่อผู้เล่น
+-- ฟังก์ชันโหลดรายชื่อผู้เล่นเป็นชื่อเล่น
 local function LoadPlayerList()
-    local playerList = {}
+    local playerNicknames = {}
+    playerMap = {}
     for _, v in pairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
-            table.insert(playerList, v.Name)
+            local displayName = v.DisplayName .. " (@" .. v.Name .. ")"
+            playerMap[displayName] = v
+            table.insert(playerNicknames, displayName)
         end
     end
-    return playerList
+    return playerNicknames
 end
 
 -- Dropdown เลือกผู้เล่น
 local playerList = LoadPlayerList()
 local dropdown = Section:NewDropdown("เลือกผู้เล่น", "เลือกคนที่จะ Spectate", playerList, function(selected)
-    selectedPlayer = Players:FindFirstChild(selected)
-    print("✔ เลือกผู้เล่น: " .. selected)
+    selectedPlayer = playerMap[selected]
+    print("✔ เลือกผู้เล่น: " .. (selectedPlayer and selectedPlayer.DisplayName or "Unknown"))
 end)
 
 -- ปุ่มกดเพื่อ Spectate/หยุด
@@ -273,7 +276,6 @@ player.CharacterAdded:Connect(function(newChar)
     humanoidRootPart = newChar:WaitForChild("HumanoidRootPart")
     print("Character Reset - Variables Updated!")
 
-    -- ถ้ายังเปิดวาปอยู่ กลับมาทำงานต่อ
     if wasTeleporting and selectedPlayer then
         local targetPlayer = game.Players:FindFirstChild(selectedPlayer)
         if targetPlayer then
@@ -282,7 +284,6 @@ player.CharacterAdded:Connect(function(newChar)
         end
     end
 
-    -- ถ้ายังเปิด Smooth Teleport อยู่ กลับมาทำงานต่อ
     if wasSmoothing and selectedPlayer then
         local targetPlayer = game.Players:FindFirstChild(selectedPlayer)
         if targetPlayer then
@@ -292,37 +293,25 @@ player.CharacterAdded:Connect(function(newChar)
     end
 end)
 
--- ฟังก์ชันเปิด/ปิด NoClip
-local function setNoClip(state)
-    noclip = state
-    if noclip then
-        game:GetService("RunService").Stepped:Connect(function()
-            if noclip and char then
-                for _, part in pairs(char:GetDescendants()) do
-                    if part:IsA("BasePart") then
-                        part.CanCollide = false
-                    end
-                end
-            end
-        end)
-    end
-end
-
--- อัปเดตรายชื่อผู้เล่น (ไม่รวมตัวเอง)
+-- ฟังก์ชันอัปเดตรายชื่อผู้เล่นให้ใช้ชื่อเล่น
 local dropdown
 local function updatePlayerList()
-    local playerNames = {}
+    local playerNicknames = {}
+    local playerMap = {}
+    
     for _, plr in pairs(game.Players:GetPlayers()) do
-        if plr ~= player then -- ไม่ให้เห็นชื่อตัวเอง
-            table.insert(playerNames, plr.Name)
+        if plr ~= player then
+            local displayName = plr.DisplayName .. " (@" .. plr.Name .. ")"
+            playerNicknames[displayName] = plr.Name
+            table.insert(playerNicknames, displayName)
         end
     end
     
     if dropdown then
-        dropdown:Refresh(playerNames)
+        dropdown:Refresh(playerNicknames)
     else
-        dropdown = Section:NewDropdown("Select Player", "Choose a player to teleport", playerNames, function(currentOption)
-            selectedPlayer = currentOption
+        dropdown = Section:NewDropdown("Select Player", "Choose a player to teleport", playerNicknames, function(currentOption)
+            selectedPlayer = playerNicknames[currentOption]
             print("Selected Player: " .. selectedPlayer)
         end)
     end
@@ -330,7 +319,7 @@ end
 
 updatePlayerList()
 
--- ฟังก์ชันบินตามเป้าหมายแบบทันที (วาปก่อนแล้วบิน)
+-- ฟังก์ชันบินตามเป้าหมายแบบทันที
 function startFollowing(target)
     if not target or not target.Character then return end
     humanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
@@ -341,7 +330,7 @@ function startFollowing(target)
     bodyPos.D = 100
 
     teleporting = true
-    wasTeleporting = true -- บันทึกสถานะว่ากำลังวาป
+    wasTeleporting = true
 
     while teleporting and task.wait() do
         if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
@@ -352,21 +341,18 @@ function startFollowing(target)
     end
 
     bodyPos:Destroy()
-    wasTeleporting = false -- หยุดวาป
+    wasTeleporting = false
 end
 
 -- ฟังก์ชันบินทะลุตามเป้าหมายแบบ Smooth
 function smoothFollow(target)
     if not target or not target.Character then return end
-
-    -- เปิด NoClip
-    setNoClip(true)
-
+    
     local bodyVel = Instance.new("BodyVelocity", humanoidRootPart)
     bodyVel.MaxForce = Vector3.new(1e5, 1e5, 1e5)
 
     smoothing = true
-    wasSmoothing = true -- บันทึกสถานะว่าใช้ Smooth Teleport
+    wasSmoothing = true
 
     while smoothing and task.wait() do
         if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
@@ -378,8 +364,7 @@ function smoothFollow(target)
     end
 
     bodyVel:Destroy()
-    setNoClip(false) -- ปิด NoClip เมื่อหยุดบิน
-    wasSmoothing = false -- หยุด Smooth Teleport
+    wasSmoothing = false
 end
 
 -- ปุ่มเริ่ม/หยุดบินตามแบบวาปก่อน
@@ -397,7 +382,7 @@ teleportButton = Section:NewButton("Start Teleport OP", "Teleport and follow sel
     end
 end)
 
--- ปุ่มเริ่ม/หยุดบินทะลุ (Smooth Teleport)
+-- ปุ่มเริ่ม/หยุดบินทะลุ
 local smoothButton
 smoothButton = Section:NewButton("Smooth Teleport", "Fly smoothly through walls to target", function()
     if selectedPlayer then
