@@ -297,21 +297,23 @@ end)
 local dropdown
 local function updatePlayerList()
     local playerNicknames = {}
-    local playerMap = {}
-    
+    playerMap = {}
+
     for _, plr in pairs(game.Players:GetPlayers()) do
         if plr ~= player then
             local displayName = plr.DisplayName .. " (@" .. plr.Name .. ")"
-            playerNicknames[displayName] = plr.Name
-            table.insert(playerNicknames, displayName)
+            playerNicknames[#playerNicknames + 1] = displayName  -- ใช้ table.insert หรือ #playerNicknames
+            playerMap[displayName] = plr.Name
         end
     end
     
     if dropdown then
-        dropdown:Refresh(playerNicknames)
+        -- ล้างรายการก่อนแล้วเพิ่มใหม่
+        dropdown:Clear()  -- ลบรายการเก่าก่อน
+        dropdown:Refresh(playerNicknames)  -- เพิ่มรายชื่อใหม่
     else
         dropdown = Section:NewDropdown("Select Player", "Choose a player to teleport", playerNicknames, function(currentOption)
-            selectedPlayer = playerNicknames[currentOption]
+            selectedPlayer = playerMap[currentOption]  -- เก็บชื่อผู้เล่นจริงๆ ใน selectedPlayer
             print("Selected Player: " .. selectedPlayer)
         end)
     end
