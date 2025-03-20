@@ -17,10 +17,10 @@ local customColors = {
     ElementColor = Color3.fromRGB(40, 40, 40)
 }
 
-local Window = Library.CreateLib("Poi Hub👽", customColors)
+local Window = Library.CreateLib("🌟Poi Hub🌟", customColors)
 
 -- 🏠 หน้า Home
-local TabHome = Window:NewTab("Home🏠")
+local TabHome = Window:NewTab("🏠Home")
 local SectionHome = TabHome:NewSection("Home")
 
 -- ดึงข้อมูลผู้เล่น
@@ -47,7 +47,7 @@ SectionHome:NewButton("Executor: " .. executor, "ข้อมูลของค�
 SectionHome:NewButton("Game: " .. gameName, "ข้อมูลของคุณ", function() end)
 
 -- สร้างแท็บ Main
-local TabMain = Window:NewTab("Main👑")
+local TabMain = Window:NewTab("👑Main")
 local SectionMain = TabMain:NewSection("Main")
 
 -- ฟังก์ชันทั้งหมดใน Main
@@ -157,7 +157,7 @@ SectionMain:NewButton("บินรถ", "ฟังก์ชันรถบิ�
 end)
 
 -- สร้างแท็บ Game
-local TabGame = Window:NewTab("Game🎮")
+local TabGame = Window:NewTab("🎮Game")
 local SectionGame = TabGame:NewSection("Game")
 
 SectionGame:NewButton("Build A Boat", "สร้างเรือของคุณ", function() 
@@ -180,7 +180,7 @@ SectionGame:NewButton("Dead Rails", "Dead Rails", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))() 
 end)
 
-local Tab = Window:NewTab("Spectate👀")
+local Tab = Window:NewTab("👀Spectate")
 local Section = Tab:NewSection("Spectate")
 
 local Players = game:GetService("Players")
@@ -255,7 +255,7 @@ Players.PlayerRemoving:Connect(function()
     dropdown:Refresh(playerList)
 end)
 
-local Tab = Window:NewTab("Teleport🌀")
+local Tab = Window:NewTab("🌀Teleport")
 local Section = Tab:NewSection("Teleport")
 
 local selectedPlayer = nil
@@ -402,6 +402,102 @@ end)
 -- ปุ่มรีเซ็ตรายชื่อผู้เล่น
 Section:NewButton("Refresh Players", "Update player list", function()
     updatePlayerList()
+end)
+
+local settingTab = Window:NewTab("⚙️ Setting")
+local settingSection = settingTab:NewSection("Settings")
+
+-- ฟังก์ชันเลือกปุ่มลัดปิด/เปิด UI
+settingSection:NewKeybind("ปุ่มลัดปิดเปิดUI PC", "Press a key to toggle UI", Enum.KeyCode.RightControl, function()
+    Library:ToggleUI()
+end)
+
+-- ฟังก์ชันเลือกธีม UI
+local themes = {
+    OriginalTheme = {
+        SchemeColor = Color3.fromRGB(255, 140, 0), -- สีปุ่มสีส้ม
+        Background = Color3.fromRGB(30, 30, 30), -- พื้นหลังสีดำ
+        Header = Color3.fromRGB(20, 20, 20),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(40, 40, 40)
+    },
+    LightTheme = {
+        SchemeColor = Color3.fromRGB(255, 255, 255),
+        Background = Color3.fromRGB(240, 240, 240),
+        Header = Color3.fromRGB(200, 200, 200),
+        TextColor = Color3.fromRGB(0, 0, 0),
+        ElementColor = Color3.fromRGB(180, 180, 180)
+    },
+    DarkTheme = {
+        SchemeColor = Color3.fromRGB(30, 30, 30),
+        Background = Color3.fromRGB(20, 20, 20),
+        Header = Color3.fromRGB(50, 50, 50),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(40, 40, 40)
+    },
+    GrapeTheme = {
+        SchemeColor = Color3.fromRGB(150, 0, 150),
+        Background = Color3.fromRGB(50, 0, 50),
+        Header = Color3.fromRGB(80, 0, 80),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(100, 0, 100)
+    },
+    BloodTheme = {
+        SchemeColor = Color3.fromRGB(255, 0, 0),
+        Background = Color3.fromRGB(50, 0, 0),
+        Header = Color3.fromRGB(80, 0, 0),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(100, 0, 0)
+    },
+    Ocean = {
+        SchemeColor = Color3.fromRGB(0, 150, 255),
+        Background = Color3.fromRGB(0, 50, 100),
+        Header = Color3.fromRGB(0, 80, 150),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(0, 100, 200)
+    },
+    Midnight = {
+        SchemeColor = Color3.fromRGB(0, 0, 50),
+        Background = Color3.fromRGB(0, 0, 30),
+        Header = Color3.fromRGB(0, 0, 80),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(0, 0, 100)
+    },
+    Sentinel = {
+        SchemeColor = Color3.fromRGB(100, 100, 100),
+        Background = Color3.fromRGB(50, 50, 50),
+        Header = Color3.fromRGB(80, 80, 80),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(60, 60, 60)
+    },
+    Synapse = {
+        SchemeColor = Color3.fromRGB(0, 255, 255),
+        Background = Color3.fromRGB(0, 50, 50),
+        Header = Color3.fromRGB(0, 80, 80),
+        TextColor = Color3.fromRGB(255, 255, 255),
+        ElementColor = Color3.fromRGB(0, 100, 100)
+    }
+}
+
+local themeNames = {"OriginalTheme", "LightTheme", "DarkTheme", "GrapeTheme", "BloodTheme", "Ocean", "Midnight", "Sentinel", "Synapse"}
+
+settingSection:NewDropdown("Select Theme", "Choose your preferred theme", themeNames, function(selectedTheme)
+    local selectedColors = themes[selectedTheme]
+    if selectedColors then
+        for key, color in pairs(selectedColors) do
+            Library:ChangeColor(key, color)
+        end
+    end
+end)
+
+-- ปุ่มรีเซ็ตการตั้งค่า
+settingSection:NewButton("Reset Settings", "Reset UI to default settings", function()
+    local defaultTheme = themes["OriginalTheme"]
+    if defaultTheme then
+        for key, color in pairs(defaultTheme) do
+            Library:ChangeColor(key, color)
+        end
+    end
 end)
 
 -- ปุ่มปิด/เปิด UI พร้อมรูปภาพ และสามารถลากได้
