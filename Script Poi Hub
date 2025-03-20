@@ -48,27 +48,11 @@ SectionHome:NewButton("Game: " .. gameName, "ข้อมูลของคุ�
 
 -- สร้างแท็บ Main
 local TabMain = Window:NewTab("👑Main")
-local SectionMain = TabMain:NewSection("Main")
+local SectionMain = TabMain:NewSection("🏃‍การเคลื่อนที่ ")
 
 -- ฟังก์ชันทั้งหมดใน Main
 SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", "ฟังก์ชันบินเร็ว", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/UjJzPtYJ"))()
-end)
-
-SectionMain:NewButton("เเมพสว่าง", "ฟังก์ชันแผนที่สว่าง", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/YCUxAsHD"))()
-end)
-
-SectionMain:NewButton("ยกรถ", "ฟังก์ชันยกรถ", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/s5vNaWSp"))()
-end)
-
-SectionMain:NewButton("Aimbot", "ฟังก์ชันล็อคหัว", function()
-    loadstring(game:HttpGet('https://pastebin.com/raw/XCTLaVGj'))()
-end)
-
-SectionMain:NewButton("เพิ่ม FPS", "ฟังก์ชันเพิ่ม FPS", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/FrMaC7KA"))()
 end)
 
 SectionMain:NewButton("วิ่งเร็ว", "ฟังก์ชันวิ่งเร็ว", function()
@@ -96,8 +80,36 @@ SectionMain:NewButton("เดินทะลุ", "ฟังก์ชันเ�
     loadstring(game:HttpGet("https://pastebin.com/raw/x59UfDpq"))()
 end)
 
-SectionMain:NewButton("กระเด็น", "ฟังก์ชันเตะคนออกแผนที่", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/qMCbGpg5"))()
+SectionMain:NewButton("เดินบนกำเเพง", "ฟังก์ชันเดินบนกำแพง", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+end)
+
+SectionMain:NewButton("บินรถ", "ฟังก์ชันรถบิน", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui"))("Spider Script") 
+end)
+
+local SectionMain = TabMain:NewSection("⚔การโจมตี")
+
+SectionMain:NewButton("Aimbot", "ฟังก์ชันล็อคหัว", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/XCTLaVGj'))()
+end)
+
+SectionMain:NewButton("hitbox", "ฟังก์ชัน hitbox", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Update-script-hitbox-9326"))()
+end)
+
+local SectionMain = TabMain:NewSection("⚒เครื่องมือเพิ่มเติม")
+
+SectionMain:NewButton("เเมพสว่าง", "ฟังก์ชันแผนที่สว่าง", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/YCUxAsHD"))()
+end)
+
+SectionMain:NewButton("ยกรถbrookhaven", "ฟังก์ชันยกรถ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/s5vNaWSp"))()
+end)
+
+SectionMain:NewButton("เพิ่ม FPS", "ฟังก์ชันเพิ่ม FPS", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/FrMaC7KA"))()
 end)
 
 SectionMain:NewButton("เสกของ", "ฟังก์ชันเสกของ", function()
@@ -106,18 +118,6 @@ end)
 
 SectionMain:NewButton("Tools", "ฟังก์ชันเครื่องมือ", function()
     loadstring(game:HttpGet("https://pastefy.app/VYIAk3o1/raw"))()
-end)
-
-SectionMain:NewButton("hitbox", "ฟังก์ชัน hitbox", function()
-    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Update-script-hitbox-9326"))()
-end)
-
-SectionMain:NewButton("เดินบนกำเเพง", "ฟังก์ชันเดินบนกำแพง", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
-end)
-
-SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
 end)
 
 SectionMain:NewButton("ล่องหน", "ฟังก์ชันล่องหน", function()
@@ -132,12 +132,22 @@ SectionMain:NewButton("คำสั่งแอดมิน", "ฟังก์�
     loadstring(game:HttpGet("https://pastebin.com/raw/QRpYR3Gt"))()
 end)
 
-SectionMain:NewButton("กระเด็นทั้งหมด", "ฟังก์ชันเตะออกแผนที่ทั้งหมด", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/CTaMBiFh"))()
-end)
-
 SectionMain:NewButton("ตัวสูง", "ฟังก์ชันตัวสูง", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/Eq9wdVcx"))()
+end)
+
+SectionMain:NewButton("Respawn", "Respawn", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/yHxeDQA3"))() 
+end)
+
+local SectionMain = TabMain:NewSection("🤬ปั่นคน")
+
+SectionMain:NewButton("กระเด็น", "ฟังก์ชันเตะคนออกแผนที่", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/qMCbGpg5"))()
+end)
+
+SectionMain:NewButton("กระเด็นทั้งหมด", "ฟังก์ชันเตะออกแผนที่ทั้งหมด", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/CTaMBiFh"))()
 end)
 
 SectionMain:NewButton("เล่นว่าว r6", "ฟังก์ชันเล่นว่าว", function()
@@ -148,12 +158,10 @@ SectionMain:NewButton("เล่นว่าว r15", "ฟังก์ชัน�
     loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
 end)
 
-SectionMain:NewButton("Respawn", "Respawn", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/yHxeDQA3"))() 
-end)
+local SectionMain = TabMain:NewSection("👀มอง")
 
-SectionMain:NewButton("บินรถ", "ฟังก์ชันรถบิน", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui"))("Spider Script") 
+SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
 end)
 
 -- สร้างแท็บ Game
