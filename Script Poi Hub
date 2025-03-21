@@ -55,8 +55,14 @@ SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", 
     loadstring(game:HttpGet("https://pastebin.com/raw/UjJzPtYJ"))()
 end)
 
-Section:NewSlider("วิ่งเร็ว", "Adjust your walk speed", 500, 0, function(value) 
-    SetWalkSpeed(value) -- เรียกใช้ฟังก์ชันเพื่อเปลี่ยนความเร็ว
+SectionMain:NewSlider("วิ่งเร็ว", "เลื่อนเพื่อปรับค่า WalkSpeed", 500, 0, function(s)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+        player.Character.Humanoid.WalkSpeed = s
+        print("✅ ปรับ WalkSpeed เป็น: " .. s)
+    else
+        warn("❌ รันไม่ติด.")
+    end
 end)
 
 SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
