@@ -55,8 +55,11 @@ SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", 
     loadstring(game:HttpGet("https://pastebin.com/raw/UjJzPtYJ"))()
 end)
 
-Section:NewSlider("วิ่ง", "", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+Section:NewSlider("วิ่ง", "Adjust your walk speed", 500, 0, function(s) 
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+        player.Character.Humanoid.WalkSpeed = s
+    end
 end)
 
 SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
