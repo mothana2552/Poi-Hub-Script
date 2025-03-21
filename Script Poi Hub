@@ -65,10 +65,6 @@ SectionMain:NewSlider("วิ่งเร็ว", "เลื่อนเพื�
     end
 end)
 
-SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/19QuEExT"))()
-end)
-
 SectionMain:NewSlider("กระโดดสูง", "เลื่อนเพื่อปรับค่า JumpPower", 500, 50, function(s)
     -- ฟังก์ชันปรับ JumpPower ตามค่าใน Slider
     local power = s
@@ -80,6 +76,10 @@ SectionMain:NewSlider("กระโดดสูง", "เลื่อนเพ�
     else
         warn("❌ รันไม่ติด.")
     end
+end)
+
+SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/19QuEExT"))()
 end)
 
 SectionMain:NewButton("เดินทะลุ", "ฟังก์ชันเดินทะลุ", function()
