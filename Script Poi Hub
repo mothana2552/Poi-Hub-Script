@@ -148,6 +148,10 @@ end)
 
 local SectionMain = TabMain:NewSection("🤬ปั่นคน")
 
+SectionMain:NewButton("Killall(ใช้ได้บางเเมพ)", "killall", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/pL9ELguA"))()
+end)
+
 SectionMain:NewButton("กระเด็น", "ฟังก์ชันเตะคนออกแผนที่", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/qMCbGpg5"))()
 end)
