@@ -168,6 +168,10 @@ SectionMain:NewButton("เล่นว่าว r15", "ฟังก์ชัน�
     loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
 end)
 
+SectionMain:NewButton("ปั่นคนเกรียนๆ", "ปั่นคนเกรียนๆ", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/kJhE9b4c"))()
+end)
+
 local SectionMain = TabMain:NewSection("👀มอง")
 
 SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
