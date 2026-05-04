@@ -178,6 +178,10 @@ SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", fu
     loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
 end)
 
+SectionMain:NewButton("Specter", "Specter", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/67BZBPS7", true))()
+end)
+
 -- สร้างแท็บ Game
 local TabGame = Window:NewTab("🎮Game")
 local SectionGame = TabGame:NewSection("Game")
@@ -200,81 +204,6 @@ end)
 
 SectionGame:NewButton("Dead Rails", "Dead Rails", function() 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))() 
-end)
-
-local Tab = Window:NewTab("👀Spectate")
-local Section = Tab:NewSection("Spectate")
-
-local Players = game:GetService("Players")
-local Camera = game.Workspace.CurrentCamera
-local LocalPlayer = Players.LocalPlayer
-
--- ตัวแปรเก็บสถานะ
-local selectedPlayer = nil
-local isSpectating = false
-local playerMap = {}
-
--- ฟังก์ชัน Spectate
-local function ToggleSpectate()
-    if isSpectating then
-        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-            Camera.CameraSubject = LocalPlayer.Character.Humanoid
-        end
-        isSpectating = false
-        print("👀 กลับมามองตัวเองแล้ว")
-    else
-        if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("Humanoid") then
-            Camera.CameraSubject = selectedPlayer.Character.Humanoid
-            isSpectating = true
-            print("🔍 กำลังดูมุมมองของ: " .. selectedPlayer.DisplayName)
-        else
-            warn("❌ เลือกผู้เล่นที่สามารถ Spectate ได้ก่อน")
-        end
-    end
-end
-
--- ฟังก์ชันโหลดรายชื่อผู้เล่นเป็นชื่อเล่น
-local function LoadPlayerList()
-    local playerNicknames = {}
-    playerMap = {}
-    for _, v in pairs(Players:GetPlayers()) do
-        if v ~= LocalPlayer then
-            local displayName = v.DisplayName .. " (@" .. v.Name .. ")"
-            playerMap[displayName] = v
-            table.insert(playerNicknames, displayName)
-        end
-    end
-    return playerNicknames
-end
-
--- Dropdown เลือกผู้เล่น
-local playerList = LoadPlayerList()
-local dropdown = Section:NewDropdown("เลือกผู้เล่น", "เลือกคนที่จะ Spectate", playerList, function(selected)
-    selectedPlayer = playerMap[selected]
-    print("✔ เลือกผู้เล่น: " .. (selectedPlayer and selectedPlayer.DisplayName or "Unknown"))
-end)
-
--- ปุ่มกดเพื่อ Spectate/หยุด
-Section:NewButton("กดเพื่อดู/หยุด", "เริ่มหรือหยุด Spectate", function()
-    ToggleSpectate()
-end)
-
--- ปุ่มรีเซ็ตรายชื่อผู้เล่น
-Section:NewButton("🔄 รีเซ็ตรายชื่อ", "โหลดรายชื่อใหม่", function()
-    playerList = LoadPlayerList()
-    dropdown:Refresh(playerList)
-    print("🔄 รีเซ็ตรายชื่อเสร็จแล้ว")
-end)
-
--- อัปเดตรายชื่อเมื่อมีคนเข้า/ออก
-Players.PlayerAdded:Connect(function()
-    playerList = LoadPlayerList()
-    dropdown:Refresh(playerList)
-end)
-
-Players.PlayerRemoving:Connect(function()
-    playerList = LoadPlayerList()
-    dropdown:Refresh(playerList)
 end)
 
 local Tab = Window:NewTab("🌀Teleport")
