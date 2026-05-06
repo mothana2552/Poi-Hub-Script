@@ -153,7 +153,7 @@ SectionMain:NewButton("Killall(ใช้ได้บางเเมพ)", "killa
 end)
 
 SectionMain:NewButton("Poi Hub fling", "Poi Hub fling", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/LgZwZ7ZB"))()
+    loadstring(game:HttpGet("https://pastebin.com/raw/vAeebbi3"))()
 end)
 
 SectionMain:NewButton("กระเด็น", "ฟังก์ชันเตะคนออกแผนที่", function()
