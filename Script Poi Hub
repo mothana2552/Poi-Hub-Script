@@ -147,7 +147,7 @@ SectionMain:NewButton("Respawn", "Respawn", function()
 end)
 
 SectionMain:NewButton("Emotes", "Emotes", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/SNYqyE6L"))() 
+    loadstring(game:HttpGet("https://pastebin.com/raw/RHPkDXyR"))() 
 end)
 
 local SectionMain = TabMain:NewSection("🤬ปั่นคน")
