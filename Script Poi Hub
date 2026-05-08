@@ -146,6 +146,10 @@ SectionMain:NewButton("Respawn", "Respawn", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yHxeDQA3"))() 
 end)
 
+SectionMain:NewButton("Emotes", "Emotes", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/SNYqyE6L"))() 
+end)
+
 local SectionMain = TabMain:NewSection("🤬ปั่นคน")
 
 SectionMain:NewButton("Killall(ใช้ได้บางเเมพ)", "killall", function()
