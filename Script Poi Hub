@@ -126,8 +126,8 @@ SectionMain:NewButton("Tools", "ฟังก์ชันเครื่องม
     loadstring(game:HttpGet("https://pastefy.app/VYIAk3o1/raw"))()
 end)
 
-SectionMain:NewButton("ล่องหน", "ฟังก์ชันล่องหน", function()
-    loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()
+SectionMain:NewButton("invisible", "invisible", function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/4mFLaha6'))()
 end)
 
 SectionMain:NewButton("สร้างบล็อค", "ฟังก์ชันสร้างบล็อค", function()
