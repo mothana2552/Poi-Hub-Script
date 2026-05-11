@@ -86,8 +86,8 @@ SectionMain:NewButton("เดินทะลุ", "ฟังก์ชันเ�
     loadstring(game:HttpGet("https://pastebin.com/raw/x59UfDpq"))()
 end)
 
-SectionMain:NewButton("เดินบนกำเเพง", "ฟังก์ชันเดินบนกำแพง", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+SectionMain:NewButton("Set Waypoint", "Set Waypoint", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/9zfJbEai"))()
 end)
 
 SectionMain:NewButton("car fly", "car fly", function()
