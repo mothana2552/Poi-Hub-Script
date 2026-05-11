@@ -213,7 +213,7 @@ SectionGame:NewButton("Aimbot blox fruit", "blox fruit", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/Amhgyaty"))() 
 end)
 
-SectionGame:NewButton(ปลดล็อกเเบนบ้านBrookhaven", "Brookhaven", function() 
+SectionGame:NewButton("ปลดล็อกเเบนบ้านBrookhaven", "ปลดล็อกเเบนบ้านBrookhaven", function() 
     loadstring(game:HttpGet("https://pastebin.com/raw/V1aUVe8b"))() 
 end)
 
