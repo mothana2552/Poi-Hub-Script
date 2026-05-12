@@ -110,8 +110,8 @@ SectionMain:NewButton("fullbright", "fullbright", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/YCUxAsHD"))()
 end)
 
-SectionMain:NewButton("ยกรถbrookhaven", "ฟังก์ชันยกรถ", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/s5vNaWSp"))()
+SectionMain:NewButton("Drag", "Drag", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/8ygdYhye"))()
 end)
 
 SectionMain:NewButton("BootFPS", "BootFPS", function()
