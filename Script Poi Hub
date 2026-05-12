@@ -51,11 +51,11 @@ local TabMain = Window:NewTab("👑Main")
 local SectionMain = TabMain:NewSection("🏃‍การเคลื่อนที่ ")
 
 -- ฟังก์ชันทั้งหมดใน Main
-SectionMain:NewButton("บินไวกว่าพ่อมึงอีก", "ฟังก์ชันบินเร็ว", function()
+SectionMain:NewButton("fly", "fly", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/UjJzPtYJ"))()
 end)
 
-SectionMain:NewSlider("วิ่งเร็ว", "เลื่อนเพื่อปรับค่า WalkSpeed", 500, 0, function(s)
+SectionMain:NewSlider("WalkSpeed", "WalkSpeed", 500, 0, function(s)
     local player = game.Players.LocalPlayer
     if player and player.Character and player.Character:FindFirstChild("Humanoid") then
         player.Character.Humanoid.WalkSpeed = s
@@ -65,7 +65,7 @@ SectionMain:NewSlider("วิ่งเร็ว", "เลื่อนเพื�
     end
 end)
 
-SectionMain:NewSlider("กระโดดสูง", "เลื่อนเพื่อปรับค่า JumpPower", 500, 50, function(s)
+SectionMain:NewSlider("JumpPower", "JumpPower", 500, 50, function(s)
     -- ฟังก์ชันปรับ JumpPower ตามค่าใน Slider
     local power = s
     local character = game.Players.LocalPlayer.Character
@@ -82,7 +82,7 @@ SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์�
     loadstring(game:HttpGet("https://pastebin.com/raw/19QuEExT"))()
 end)
 
-SectionMain:NewButton("เดินทะลุ", "ฟังก์ชันเดินทะลุ", function()
+SectionMain:NewButton("noclip", "noclip", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/x59UfDpq"))()
 end)
 
@@ -106,7 +106,7 @@ end)
 
 local SectionMain = TabMain:NewSection("⚒เครื่องมือเพิ่มเติม")
 
-SectionMain:NewButton("เเมพสว่าง", "ฟังก์ชันแผนที่สว่าง", function()
+SectionMain:NewButton("fullbright", "fullbright", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/YCUxAsHD"))()
 end)
 
@@ -114,7 +114,7 @@ SectionMain:NewButton("ยกรถbrookhaven", "ฟังก์ชันยก�
     loadstring(game:HttpGet("https://pastebin.com/raw/s5vNaWSp"))()
 end)
 
-SectionMain:NewButton("เพิ่ม FPS", "ฟังก์ชันเพิ่ม FPS", function()
+SectionMain:NewButton("BootFPS", "BootFPS", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/FrMaC7KA"))()
 end)
 
@@ -138,10 +138,6 @@ SectionMain:NewButton("คำสั่งแอดมิน", "ฟังก์�
     loadstring(game:HttpGet("https://pastebin.com/raw/QRpYR3Gt"))()
 end)
 
-SectionMain:NewButton("ตัวสูง", "ฟังก์ชันตัวสูง", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/Eq9wdVcx"))()
-end)
-
 SectionMain:NewButton("Respawn", "Respawn", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yHxeDQA3"))() 
 end)
@@ -163,19 +159,15 @@ SectionMain:NewButton("anti fling", "anti fling", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/ATzBEzZC"))()
 end)
 
-SectionMain:NewButton("กระเด็น", "ฟังก์ชันเตะคนออกแผนที่", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/qMCbGpg5"))()
-end)
-
-SectionMain:NewButton("กระเด็นทั้งหมด", "ฟังก์ชันเตะออกแผนที่ทั้งหมด", function()
+SectionMain:NewButton("fling all", "fling all", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/CTaMBiFh"))()
 end)
 
-SectionMain:NewButton("เล่นว่าว r6", "ฟังก์ชันเล่นว่าว", function()
+SectionMain:NewButton("jerk r6", "jerk r6", function()
     loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
 end)
 
-SectionMain:NewButton("เล่นว่าว r15", "ฟังก์ชันเล่นว่าว", function()
+SectionMain:NewButton("jerk r15", "jerk r15", function()
     loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
 end)
 
@@ -185,7 +177,7 @@ end)
 
 local SectionMain = TabMain:NewSection("👀มอง")
 
-SectionMain:NewButton("EPS", "ฟังก์ชันมองทะลุ", function()
+SectionMain:NewButton("ESP", "ฟังก์ชันมองทะลุ", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/VMGGsfpA", true))()
 end)
 
