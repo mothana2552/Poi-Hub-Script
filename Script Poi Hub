@@ -78,7 +78,7 @@ SectionMain:NewSlider("JumpPower", "JumpPower", 500, 50, function(s)
     end
 end)
 
-SectionMain:NewButton("คลิกเพื่อวาป", "ฟังก์ชันคลิกเพื่อวาป", function()
+SectionMain:NewButton("Click to TP", "Click to TP", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/19QuEExT"))()
 end)
 
@@ -118,11 +118,11 @@ SectionMain:NewButton("BootFPS", "BootFPS", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/FrMaC7KA"))()
 end)
 
-SectionMain:NewButton("เสกของ", "ฟังก์ชันเสกของ", function()
+SectionMain:NewButton("magical", "magical", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/Y19HKccz"))()
 end)
 
-SectionMain:NewButton("Tools", "ฟังก์ชันเครื่องมือ", function()
+SectionMain:NewButton("Tools", "Tools", function()
     loadstring(game:HttpGet("https://pastefy.app/VYIAk3o1/raw"))()
 end)
 
@@ -130,11 +130,7 @@ SectionMain:NewButton("invisible", "invisible", function()
     loadstring(game:HttpGet('https://pastebin.com/raw/4mFLaha6'))()
 end)
 
-SectionMain:NewButton("สร้างบล็อค", "ฟังก์ชันสร้างบล็อค", function()
-    loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
-end)
-
-SectionMain:NewButton("คำสั่งแอดมิน", "ฟังก์ชันคำสั่งแอดมิน", function()
+SectionMain:NewButton("admin", "admin", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/QRpYR3Gt"))()
 end)
 
