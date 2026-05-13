@@ -94,6 +94,10 @@ SectionMain:NewButton("car fly", "car fly", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/xUaDUHq5"))() 
 end)
 
+SectionMain:NewButton("Free Cam", "Free Cam", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/6d7HCgBD"))() 
+end)
+
 local SectionMain = TabMain:NewSection("⚔การโจมตี")
 
 SectionMain:NewButton("Aimbot", "ฟังก์ชันล็อคหัว", function()
